@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" data-motion="full">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GeoRaksha — Geofencing and Real-Time Alerts | Configure 2026 · Team CFG-5RZN</title>
+<meta name="description" content="GeoRaksha draws invisible fences on a map and raises an alert the moment a vehicle or person crosses one — or stops reporting. Built for Configure 2026, problem statement: Geofencing and Real-Time Alerts.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap header-in">
+    <span class="wordmark display">GeoRaksha<span class="dot">.</span></span>
+    <span class="chip" id="sourceChip">Source: starting…</span>
+    <span class="chip">Team CFG-5RZN</span>
+    <span class="header-spacer"></span>
+    <button class="toggle" id="motionBtn" aria-pressed="false">Motion: full</button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">Geofencing · Real-time alerts</p>
+      <h1>A fence you cannot see, <em>watched all night.</em></h1>
+      <p class="lede">GeoRaksha draws invisible fences on a map — around a yard, a depot, a site
+        gate — and raises an alert the moment a vehicle or a person crosses one, or stops
+        reporting altogether.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#watchfloor">Open the watch floor</a>
+        <a class="btn" href="#how">How it works</a>
+      </div>
+      <div class="hero-facts">
+        <span class="chip">The alert rides the same event that crossed the line</span>
+        <span class="chip">Enter · Exit · Silence · Recovered</span>
+        <span class="chip">Polygon and circle zones, drawn by hand</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem">
+    <div class="wrap">
+      <p class="kicker reveal">The problem</p>
+      <h2 class="section-title reveal">Boundaries exist. Watching them does not.</h2>
+      <p class="section-lede reveal">Every yard, depot and site has a boundary. What it rarely
+        has is a pair of eyes on that boundary at 2 a.m.</p>
+      <div class="cards">
+        <article class="card reveal">
+          <span class="num">01</span>
+          <h3>Fences on paper</h3>
+          <p>A site boundary usually lives in a register, or in a guard's head. Nobody can
+            watch every gate, all night, without blinking — and nobody should have to.</p>
+        </article>
+        <article class="card reveal">
+          <span class="num">02</span>
+          <h3>Crossings nobody sees</h3>
+          <p>A truck leaves the yard at 2 a.m. The log book finds out at 9. By then the
+            question is not where it went, but why nobody knew when it left.</p>
+        </article>
+        <article class="card reveal">
+          <span class="num">03</span>
+          <h3>Silence looks like safety</h3>
+          <p>A tracker that stops reporting looks exactly like one that is standing still.
+            The gap is only noticed when someone goes looking for it.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section id="how">
+    <div class="wrap">
+      <p class="kicker reveal">The solution</p>
+      <h2 class="section-title reveal">How GeoRaksha watches</h2>
+      <p class="section-lede reveal">Three steps, and no step is a person watching a screen.</p>
+      <div class="cards">
+        <article class="card reveal">
+          <span class="num">Step 1</span>
+          <h3>Draw the fence</h3>
+          <p>Draw a polygon on the map, or drop a circle with a radius. That is the whole
+            setup — no code, no coordinates typed by hand.</p>
+        </article>
+        <article class="card reveal">
+          <span class="num">Step 2</span>
+          <h3>The engine checks every report</h3>
+          <p>Each position report is tested against every fence with real geometry —
+            point-in-polygon for drawn zones, true distance for circles. Not estimates.</p>
+        </article>
+        <article class="card reveal">
+          <span class="num">Step 3</span>
+          <h3>Alerts the moment it happens</h3>
+          <p>Enter, exit, silence, recovered. The alert is raised by the same event that
+            crossed the line — not by a summary written at the end of a shift.</p>
+        </article>
+      </div>
+
+      <div class="pipeline reveal" aria-label="How GeoRaksha is built">
+        <div class="pipe-step"><b>Position stream</b><span>Reports land one by one, each with a place and a time.</span></div>
+        <span class="pipe-arrow" aria-hidden="true">→</span>
+        <div class="pipe-step"><b>Geofence engine</b><span>Every report is checked against every zone.</span></div>
+        <span class="pipe-arrow" aria-hidden="true">→</span>
+        <div class="pipe-step"><b>Alert rules</b><span>Crossings and silences become alerts, once each.</span></div>
+        <span class="pipe-arrow" aria-hidden="true">→</span>
+        <div class="pipe-step"><b>Watch floor</b><span>The map and the alert feed you see below.</span></div>
+      </div>
+
+      <p class="section-lede reveal" style="margin-top:26px">At Configure 2026 the position
+        stream comes from the organisers' Condense data generator, and the pipeline runs on
+        Condense. This public page runs the same engine on a clearly labelled sample stream
+        so the watch floor can be tried right now. Swapping the source is one config block —
+        the engine and the alerts do not change.</p>
+    </div>
+  </section>
+
+  <!-- THE APP -->
+  <section id="watchfloor">
+    <div class="wrap">
+      <p class="kicker">Live demo</p>
+      <h2 class="section-title">The watch floor</h2>
+      <p class="section-lede">Running now, on the sample stream. Two zones are already drawn.
+        Watch the vans cross them — and watch VAN-03 go quiet.</p>
+
+      <div class="floor">
+        <!-- left: zones + assets -->
+        <div class="panel">
+          <div class="group">
+            <h3>Zones</h3>
+            <label for="zoneName">Name for the next zone</label>
+            <input type="text" id="zoneName" placeholder="e.g. North Gate">
+            <div class="row">
+              <button id="drawPolyBtn" class="toggle" aria-pressed="false">Draw polygon zone</button>
+            </div>
+            <div class="row" style="margin-top:8px">
+              <button id="addCircleBtn" class="toggle" aria-pressed="false">Add circle zone</button>
+            </div>
+            <label for="radiusSel" style="margin-top:10px">Circle radius</label>
+            <select id="radiusSel">
+              <option value="80">80 m</option>
+              <option value="130" selected>130 m</option>
+              <option value="200">200 m</option>
+            </select>
+            <div class="row">
+              <button id="finishZoneBtn" disabled>Finish zone</button>
+              <button id="cancelDrawBtn" disabled>Cancel</button>
+            </div>
+          </div>
+          <div class="group">
+            <div id="zoneList"></div>
+          </div>
+          <div class="group">
+            <h3>Assets</h3>
+            <div id="assetList"></div>
+          </div>
+        </div>
+
+        <!-- centre: map -->
+        <div class="panel map-panel">
+          <div class="map-frame">
+            <canvas id="map" width="780" height="560" aria-label="Schematic map with geofence zones and moving assets"></canvas>
+          </div>
+          <p class="map-hint" id="mapHint"></p>
+          <div class="map-legend">
+            <span><span class="sw" style="background:#f2b33d"></span>Vehicle</span>
+            <span><span class="sw" style="background:#2dd4bf"></span>Person</span>
+            <span><span class="sw" style="background:transparent;border:2px solid #2dd4bf"></span>Inside a zone</span>
+            <span><span class="sw" style="background:transparent;border:2px solid #e5484d"></span>Gone silent</span>
+          </div>
+          <p class="ticker" id="ticker">Waiting for the first event…</p>
+        </div>
+
+        <!-- right: stream + alerts -->
+        <div class="panel">
+          <div class="group">
+            <h3>Stream</h3>
+            <div class="row">
+              <button id="pauseBtn">Pause stream</button>
+              <button id="resetBtn">Reset demo</button>
+            </div>
+            <label for="silenceSel" style="margin-top:10px">Flag silence after</label>
+            <select id="silenceSel">
+              <option value="10000">10 seconds</option>
+              <option value="20000" selected>20 seconds</option>
+              <option value="30000">30 seconds</option>
+            </select>
+          </div>
+          <div class="group">
+            <h3>Alerts</h3>
+            <div class="feed-counts" id="feedCounts"></div>
+            <div class="feed" id="feed">
+              <p class="feed-empty">No alerts yet. Alerts appear here the moment the engine
+                sees a crossing or a silence.</p>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <button id="clearFeedBtn">Clear feed</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOME -->
+  <section id="outcome">
+    <div class="wrap">
+      <p class="kicker reveal">The outcome</p>
+      <h2 class="section-title reveal">Checked, not claimed</h2>
+      <p class="section-lede reveal">What is already true of this build, before the Condense
+        stream is connected at the event.</p>
+      <div class="stats">
+        <div class="stat reveal">
+          <span class="big">26 / 26</span>
+          <p>Automated tests pass — 20 on the geofence engine, 6 on the full
+            stream-to-alert pipeline.</p>
+        </div>
+        <div class="stat reveal">
+          <span class="big">Same event</span>
+          <p>The crossing and the alert are one step. Nothing waits for a batch,
+            a summary, or a person to notice.</p>
+        </div>
+        <div class="stat reveal">
+          <span class="big">4 alerts</span>
+          <p>Enter, exit, silence and recovered — each raised once, by the engine,
+            never typed into the feed by hand.</p>
+        </div>
+        <div class="stat reveal">
+          <span class="big">1 config block</span>
+          <p>That is all that changes to run on the Condense generator at the
+            event. The engine, the zones and the alerts stay as they are.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p><strong>GeoRaksha</strong> — built by Team CFG-5RZN for Configure 2026 (Bosch).
+      Problem statement: “Geofencing and Real-Time Alerts”.</p>
+    <p class="fine">The map is a schematic plot, not a street map. Positions on this public
+      page come from a labelled sample stream that mimics the shape of the organisers' data
+      generator; at the event, the same engine runs on the Condense stream. Nothing on this
+      page is presented as real event data.</p>
+  </div>
+</footer>
+
+<script src="js/engine.js"></script>
+<script src="js/sampleStream.js"></script>
+<script src="js/adapters.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
