@@ -6,6 +6,7 @@
 <title>GeoRaksha — Geofencing and Real-Time Alerts | Configure 2026 · Team CFG-5RZN</title>
 <meta name="description" content="GeoRaksha draws invisible fences on a map and raises an alert the moment a vehicle or person crosses one — or stops reporting. Built for Configure 2026, problem statement: Geofencing and Real-Time Alerts.">
 <link rel="stylesheet" href="css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 </head>
 <body>
 
@@ -36,6 +37,11 @@
         <span class="chip">The alert rides the same event that crossed the line</span>
         <span class="chip">Enter · Exit · Silence · Recovered</span>
         <span class="chip">Polygon and circle zones, drawn by hand</span>
+      </div>
+      <div class="hero3d-wrap">
+        <canvas id="hero3d" aria-label="3D geofence terrain: fenced ground with moving assets and a red breach pulse"></canvas>
+        <p class="hero3d-cap">The watch floor in 3D — a stylised picture, not live data. Fences glow, assets move, a breach pulses red. Drag to look around.</p>
+        <a class="scroll-cue" href="#watchfloor">↓ Scroll — the live watch floor is below</a>
       </div>
     </div>
   </section>
@@ -250,5 +256,6 @@
 <script src="js/sampleStream.js"></script>
 <script src="js/adapters.js"></script>
 <script src="js/app.js"></script>
+<script src="js/hero3d.js" defer></script>
 </body>
 </html>
